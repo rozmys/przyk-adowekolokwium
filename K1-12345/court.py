@@ -9,7 +9,7 @@ class Court:
 
     def __init__(self, width: float = 68, length: float = 150,
                  address: str = "", year_built: int = 1) -> None:
-        if 90 <= length <= 120 and 45 <= width <= 90:
+        if 120 >= length >= 90 >= width >= 45:
             self.__length = length
             self.__width = width
         else:
@@ -57,12 +57,20 @@ class Court:
 
     @staticmethod
     def validate(arg: Court) -> None:
-        year = datetime.datetime.year
-        if arg.year_built > year and arg.year_built < 0:
+        year = datetime.datetime.now().year
+        if arg.year_built > year or arg.year_built < 0:
             arg.year_built = year
 
     def __str__(self) -> str:
         return f"Boisko wybudowane w roku {self.__year_built}, o długości {self.__length} metrów i szerokości {self.__width} metrów." \
-               f"\nPole powierzchni: {self.area()} mkw.\nAdres: {self.__address}"
+               f"\nPole powierzchni: {self.area()} mkw.\nAdres: {self.__address}."
 
+    def __eq__(self, other: Court) -> bool:
+        if self.area() == other.area():
+            return True
+        return False
 
+    def __ne__(self, other: Court) -> bool:
+        if self.area() != other.area():
+            return True
+        return False
