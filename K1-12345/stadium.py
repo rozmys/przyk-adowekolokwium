@@ -19,11 +19,11 @@ class Stadium(Court):
 
     @property
     def name(self) -> str:
-        return self.name
+        return self.__name
 
     @name.setter
     def name(self, value: str) -> None:
-        self.name = value
+        self.__name = value
 
     @property
     def common_name(self) -> str:
@@ -41,8 +41,8 @@ class Stadium(Court):
     def capacity(self, value: int) -> None:
         if value < 0:
             print("Podana wartość jest nie prawidłowa")
-
-        self.__capacity = value
+        else:
+            self.__capacity = value
 
     def __eq__(self, other: Stadium) -> bool:
         if self.area() == other.area() and self.capacity == other.capacity:
@@ -58,10 +58,10 @@ class Stadium(Court):
         if self.common_name == "":
             return f"Boisko wybudowane w roku {self.year_built}, o długości {self.length} metrów i szerokości {self.width} metrów." \
                    f"\nPole powierzchni: {self.area()} mkw.\nAdres: {self.address}.\n"\
-                   f"Nazwa: {self.name}.\nPojemność stadionu: {self.capacity}."
+                   f"Nazwa: {self.name}.\nPojemność stadionu: {self.capacity} osób."
 
         return f"Boisko wybudowane w roku {self.year_built}, o długości {self.length} metrów i szerokości {self.width} metrów." \
                f"\nPole powierzchni: {self.area()} mkw.\nAdres: {self.address}.\n" \
                f"Nazwa: {self.name}.\n"\
                f"Nazwa zwyczajowa: {self.common_name}.\n"\
-               f"Pojemność stadionu: {self.capacity}."
+               f"Pojemność stadionu: {self.capacity} osób."
